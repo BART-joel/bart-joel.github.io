@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BART-joel | Project Showcase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0d1b2a;
+      --slate:  #1b2d42;
+      --gold:   #c9a84c;
+      --gold-lt:#e8c97a;
+      --smoke:  #f4f4f0;
+      --white:  #ffffff;
+      --text:   #2c2c2c;
+      --muted:  #6b7280;
+      --border: #e0ddd6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--smoke);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 79px,
+          rgba(201,168,76,.07) 79px,
+          rgba(201,168,76,.07) 80px
+        ),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 79px,
+          rgba(201,168,76,.07) 79px,
+          rgba(201,168,76,.07) 80px
+        );
+      pointer-events: none;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 72px 40px 64px;
+      position: relative;
+    }
+
+    .header-rule {
+      width: 48px;
+      height: 3px;
+      background: var(--gold);
+      margin-bottom: 28px;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    header h1 span { color: var(--gold); }
+
+    header p.tagline {
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: rgba(255,255,255,.72);
+      max-width: 540px;
+      margin-bottom: 36px;
+    }
+
+    .header-meta {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .header-meta a {
+      color: var(--gold-lt);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      border-bottom: 1px solid transparent;
+      transition: border-color .2s;
+    }
+    .header-meta a:hover { border-color: var(--gold-lt); }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--slate);
+      border-bottom: 2px solid var(--gold);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav ul {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+      list-style: none;
+      display: flex;
+      gap: 4px;
+    }
+
+    nav ul li a {
+      display: block;
+      padding: 14px 18px;
+      color: rgba(255,255,255,.75);
+      text-decoration: none;
+      font-size: .85rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: color .2s, background .2s;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: var(--gold-lt);
+      border-color: var(--gold);
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 40px 80px;
+    }
+
+    /* ── SECTION HEADING ── */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .section-label h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── PROJECTS GRID ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 28px;
+      margin-bottom: 72px;
+    }
+
+    .project-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--navy);
+      padding: 32px 28px 28px;
+      transition: transform .25s, box-shadow .25s, border-top-color .25s;
+      position: relative;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(13,27,42,.12);
+      border-top-color: var(--gold);
+    }
+
+    .project-card .card-tag {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(201,168,76,.1);
+      padding: 3px 10px;
+      border-radius: 2px;
+      margin-bottom: 14px;
+    }
+
+    .project-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .project-card p {
+      font-size: .95rem;
+      color: var(--muted);
+      margin-bottom: 22px;
+      line-height: 1.6;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    .card-link {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: .04em;
+      transition: color .2s;
+    }
+    .card-link:hover { color: var(--gold); }
+    .card-link::after { content: ' →'; }
+
+    .card-tech {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .tech-badge {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--smoke);
+      padding: 2px 8px;
+      border-radius: 2px;
+      border: 1px solid var(--border);
+    }
+
+    /* ── CHARTS PLACEHOLDER SECTION ── */
+    #charts {
+      margin-bottom: 72px;
+    }
+
+    .charts-placeholder {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+    }
+
+    .chart-slot {
+      background: var(--white);
+      border: 1px dashed #c5c0b5;
+      padding: 48px 32px;
+      text-align: center;
+      color: var(--muted);
+      transition: border-color .2s, background .2s;
+    }
+
+    .chart-slot:hover {
+      border-color: var(--gold);
+      background: rgba(201,168,76,.03);
+    }
+
+    .chart-slot .slot-icon {
+      font-size: 2.4rem;
+      margin-bottom: 14px;
+      opacity: .35;
+    }
+
+    .chart-slot h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .chart-slot p {
+      font-size: .88rem;
+      color: var(--muted);
+    }
+
+    /* ── ABOUT STRIP ── */
+    .about-strip {
+      background: var(--navy);
+      color: var(--white);
+      padding: 52px 48px;
+      display: flex;
+      gap: 48px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 72px;
+      border-left: 4px solid var(--gold);
+    }
+
+    .about-strip .about-text { flex: 1; min-width: 240px; }
+
+    .about-strip h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      color: var(--gold-lt);
+    }
+
+    .about-strip p {
+      font-size: .97rem;
+      color: rgba(255,255,255,.72);
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--slate);
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 28px 40px;
+      font-size: .85rem;
+      border-top: 2px solid var(--gold);
+    }
+
+    footer a {
+      color: var(--gold-lt);
+      text-decoration: none;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .header-inner > * {
+      animation: fadeUp .6s ease both;
+    }
+    .header-inner .header-rule   { animation-delay: .1s; }
+    .header-inner h1              { animation-delay: .2s; }
+    .header-inner .tagline        { animation-delay: .35s; }
+    .header-inner .header-meta    { animation-delay: .5s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .header-inner, main { padding-left: 20px; padding-right: 20px; }
+      nav ul { padding: 0 20px; gap: 0; }
+      .about-strip { padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="header-rule"></div>
+      <h1>BART<span>-joel</span></h1>
+      <p class="tagline">A showcase of projects, data visualizations, and analytical work.</p>
+      <div class="header-meta">
+        <a href="https://github.com/BART-joel" target="_blank">GitHub</a>
+        <a href="mailto:you@email.com">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav>
+    <ul>
+      <li><a href="#projects" class="active">Projects</a></li>
+      <li><a href="#charts">Charts & Graphs</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-label"><h2>Projects</h2></div>
+      <div class="projects-grid">
+
+        <!-- SAMPLE CARD — duplicate and edit these -->
+        <div class="project-card">
+          <span class="card-tag">Data Analysis</span>
+          <h3>Project Title One</h3>
+          <p>A short description of what this project does, the problem it solves, or the question it answers.</p>
+          <div class="card-footer">
+            <a href="https://github.com/BART-joel" class="card-link">View on GitHub</a>
+            <div class="card-tech">
+              <span class="tech-badge">Python</span>
+              <span class="tech-badge">Pandas</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <span class="card-tag">Visualization</span>
+          <h3>Project Title Two</h3>
+          <p>Describe the dataset, methodology, or outcome. Keep it concise — one or two sentences.</p>
+          <div class="card-footer">
+            <a href="https://github.com/BART-joel" class="card-link">View on GitHub</a>
+            <div class="card-tech">
+              <span class="tech-badge">D3.js</span>
+              <span class="tech-badge">CSV</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <span class="card-tag">Coming Soon</span>
+          <h3>Your Next Project</h3>
+          <p>Replace this card with your own work as your portfolio grows.</p>
+          <div class="card-footer">
+            <a href="https://github.com/BART-joel" class="card-link">View GitHub</a>
+            <div class="card-tech">
+              <span class="tech-badge">TBD</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CHARTS -->
+    <section id="charts">
+      <div class="section-label"><h2>Charts &amp; Graphs</h2></div>
+      <div class="charts-placeholder">
+
+        <div class="chart-slot">
+          <div class="slot-icon">📊</div>
+          <h4>Chart Placeholder</h4>
+          <p>Your first visualization will appear here. Add a <code>&lt;canvas&gt;</code> or embed a Chart.js / D3 chart.</p>
+        </div>
+
+        <div class="chart-slot">
+          <div class="slot-icon">📈</div>
+          <h4>Chart Placeholder</h4>
+          <p>Drop in any chart library — Chart.js, Plotly, D3.js, or even a static image export.</p>
+        </div>
+
+        <div class="chart-slot">
+          <div class="slot-icon">🗺️</div>
+          <h4>Map / Geo Visualization</h4>
+          <p>Leaflet.js or Mapbox maps can be embedded here when you're ready.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="about-strip">
+        <div class="about-text">
+          <h2>About This Site</h2>
+          <p>
+            This portfolio is a living document — updated as new projects and visualizations are completed.
+            Built with plain HTML &amp; CSS and hosted on GitHub Pages.
+            <!-- Add a sentence or two about yourself here. -->
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 BART-joel &nbsp;·&nbsp; <a href="https://github.com/BART-joel" target="_blank">github.com/BART-joel</a></p>
+  </footer>
+
+</body>
+</html>
